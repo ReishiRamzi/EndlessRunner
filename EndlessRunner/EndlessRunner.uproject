@@ -3,5 +3,12 @@
 	"EngineAssociation": "4.21",
 	"Category": "",
 	"Description": "",
-	"Enterprise": true
+	"Enterprise": true,
+	"TargetPlatforms": [
+		"Android",
+		"AllDesktop",
+		"Lumin",
+		"WindowsNoEditor",
+		"LinuxNoEditor"
+	]
 }
