@@ -13,5 +13,20 @@ UCLASS()
 class ENDLESSRUNNER_API UMySaveGame : public USaveGame
 {
 	GENERATED_BODY()
+
+	public:
+
+	UPROPERTY(VisibleAnywhere, Category = Basic)
+		FString PlayerName;
+
+	UPROPERTY(VisibleAnywhere, Category = Basic)
+		FString SaveSlotName;
+
+	UPROPERTY(VisibleAnywhere, Category = Basic)
+		uint32 UserIndex;
+	UPROPERTY(VisibleAnywhere, Category = Basic)
+		uint32 ZennyScore;
+
+	UMySaveGame();
 	
 };
