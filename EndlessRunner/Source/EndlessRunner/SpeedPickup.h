@@ -17,4 +17,7 @@ class ENDLESSRUNNER_API ASpeedPickup : public APickup
 public:
 	// construct, set default values
 	ASpeedPickup();
+
+	// override IsPickedUp - use implementation b/c blueprint native event
+	void IsPickedUp_Implementation() override;
 };

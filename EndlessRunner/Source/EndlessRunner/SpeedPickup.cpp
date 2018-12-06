@@ -7,3 +7,12 @@ ASpeedPickup::ASpeedPickup()
 {
 	GetMesh()->SetSimulatePhysics(true);
 }
+
+void ASpeedPickup::IsPickedUp_Implementation()
+{
+	// use the base pickup behavior
+	Super::IsPickedUp_Implementation();
+
+	// destroy the pickup
+	Destroy();
+}
