@@ -15,12 +15,32 @@ public:
 	// Sets default values for this actor's properties
 	APickup();
 
+	// Called every frame - no tick for now
+	virtual void Tick(float DeltaTime) override;
+
+	// Return the mesh for the pickup
+	FORCEINLINE class UStaticMeshComponent* GetMesh() const { return PickupMesh; }
+
+	// Returns whether or not the Pickup is active
+	UFUNCTION(BlueprintPure, Category = "Pickup")
+	bool IsActive();
+
+	// Allow other classes to safely change isActive
+	UFUNCTION(BlueprintCallable, Category = "Pickup")
+	void SetActive(bool NewPickupState);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	// True when the pickup is active
+	bool bIsActive;
+
+	
+private:
+	/* static mesh component*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pickup", meta = (AllowPrivateAccess = "true"))
+	class UStaticMeshComponent* PickupMesh;
+
 
 };
