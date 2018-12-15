@@ -10,3 +10,7 @@ Download information:
 In order to download the game from this repository, the user should have Unreal Engine 4 installed on their computer. 
 First enter the repository, then navigate to the master branch. Download the files of the branch by selecting the green clone or download button, then select download ZIP.
 Go to the downloaded files and open the EndlessRunner.uproject file, which should open Unreal Engine 4. Please also make sure your computer is able to compile C++ code. 
+
+Play Testing
+
+Once in Unreal Engine, simply hit the play button on the top bar. Users might also want to compile and save the editor if they want to make changes. 
