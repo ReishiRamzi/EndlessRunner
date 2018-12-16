@@ -9,10 +9,16 @@ EndlessRunner/Build/
 
 EndlessRunner/Content/Maps/EndlessRun_BuiltData\.uasset
 
-
+EndlessRunner/\.vs/
 
 \.DS_Store
-ServbotDash
-ThirdPersonc
+#ServbotDash
+ServbotDash/Intermediate/
 
-EndlessRunner/\.vs/
+ServbotDash/Saved/
+
+ServbotDash/Binaries/
+
+ServbotDash/Build/
+
+ServbotDash/\.vs/
