@@ -27,10 +27,6 @@ public:
 	/* the next attach point for spawning tiles */
 	UPROPERTY(BlueprintReadWrite, Category = "ServbotDash")
 		FTransform SpawnTransform;
-	
-	/* The Ruin Tile */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServbotDash")
-		TSubclassOf<AActor> RuinTile;
 
 	/* change the current widget */
 	UFUNCTION(BlueprintCallable, Category = "ServbotDash")
@@ -58,7 +54,7 @@ protected:
 		UUserWidget* CurrentWidget;
 
 	/* Current amount of straight tiles */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ServbotDash")
+	UPROPERTY(BlueprintReadOnly, Category = "ServbotDash")
 		int32 CurrentStraights;
 
 	/* Maximum amount of straight tiles*/
