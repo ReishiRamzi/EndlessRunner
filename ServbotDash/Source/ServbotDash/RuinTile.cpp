@@ -1,26 +1,27 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "RuinTile.h"
-#include "DashGameMode.h"
-#include "TimerManager.h"
-
 
 // Sets default values
 ARuinTile::ARuinTile()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	// Don't need tick
 	PrimaryActorTick.bCanEverTick = false;
+
+	// Create the scene root
 	Root = CreateDefaultSubobject<USceneComponent>("Root");
 	RootComponent = Root;
 
+	// add the attach arrow component to the hierarchy
 	SpawnAttachArrow = CreateDefaultSubobject<UArrowComponent>("Arrow");
+	SpawnAttachArrow->SetupAttachment(Root);
+
+	// set transform of this attach point
+	SpawnAttachPoint = SpawnAttachArrow->GetComponentTransform();
+
+	// Add the end trigger to the hierarchy
 	TileEndTrigger = CreateDefaultSubobject<UBoxComponent>("TileEndTrigger");
 	TileEndTrigger->SetupAttachment(Root);
-	TileEndTrigger->SetGenerateOverlapEvents(true);
-
-	//DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FActorBeginOverlapSignature, AActor*, OverlappedActor, AActor*, OtherActor);
-	//FComponentBeginOverlapSignature EndTriggerSig;
-	TileEndTrigger->OnComponentBeginOverlap.AddDynamic(this, &ARuinTile::EndTriggerBeginOverlap);
-	SpawnAttachPoint = SpawnAttachArrow->GetRelativeTransform();
+	//TileEndTrigger->OnComponentBeginOverlap.AddDynamic(this, &ARuinTile::EndTriggerBeginOverlap);
 
 }
 
@@ -28,36 +29,34 @@ ARuinTile::ARuinTile()
 void ARuinTile::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void ARuinTile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
-void ARuinTile::EndTriggerBeginOverlap(
-	UPrimitiveComponent* OverlappedComponent,
-	AActor* OtherActor,
-	UPrimitiveComponent* OtherComp,
-	int32 OtherBodyIndex,
-	bool bFromSweep,
-	const FHitResult &SweepResult)
+// returns FTransform of the attach point
+FTransform ARuinTile::GetAttachTransform()
 {
-	UE_LOG(LogTemp, Warning, TEXT("passed the end trigger"));
-	ADashGameMode* DashGameMode = (ADashGameMode*)GetWorld()->GetAuthGameMode();
-	//DashGameMode->AddRuinTile(SpawnAttachPoint);
-	// Call RepeatingFunction once per second, starting two seconds from now.
-	FTimerHandle DestroyTileHandle;
-	//GetWorldTimerManager().SetTimer(&ARuinTile::DestroyTile, true, 2.0f);
-	GetWorldTimerManager().SetTimer(DestroyTileHandle, this, &ARuinTile::DestroyTile, true, 2.0f);
+	SpawnAttachPoint = SpawnAttachArrow->GetComponentTransform();
+	return 	SpawnAttachPoint;
 }
 
-void ARuinTile::DestroyTile()
-{
-	// destroy the tile
-	UE_LOG(LogTemp, Warning, TEXT("Destroy the tile"));
-}
+//void ARuinTile::EndTriggerBeginOverlap
+//	(
+//	UPrimitiveComponent* OverlappedComponent,
+//	AActor* OtherActor,
+//	UPrimitiveComponent* OtherComp,
+//	int32 OtherBodyIndex,
+//	bool bFromSweep,
+//	const FHitResult &SweepResult
+//	)
+//{
+//	//AActor* ServBot = <AServbot>OtherActor;
+//	UE_LOG(LogTemp, Warning, TEXT("passed the end trigger"));
+//
+//}
+
 
