@@ -3,6 +3,15 @@
 #include "DashGameState.h"
 
 
+void ADashGameState::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// Initialize the environment
+	InitializeCourse();
+
+}
+
 void ADashGameState::InitializeCourse()
 {
 	// Initialize the tiles
@@ -57,7 +66,7 @@ void ADashGameState::AddStraightTile()
 	UWorld* world = GetWorld();
 
 	// generate random number for straights (0 - 2)
-	int32 RandIntStraightType = FMath::RandRange(0, 2);
+	int32 RandIntStraightType = FMath::RandRange(0, 3);
 
 	TSubclassOf<ARuinTile> TileType;
 	// get the random straight tile
@@ -83,7 +92,7 @@ void ADashGameState::AddCornerTile()
 {
 	UWorld* world = GetWorld();
 	// random corner tile 
-	int32 RandIntCorner = FMath::RandRange(3, 4);
+	int32 RandIntCorner = FMath::RandRange(4, 5);
 
 	// get the random corner tile
 	TSubclassOf<ARuinTile> TileToSpawn = RuinTiles[RandIntCorner];
